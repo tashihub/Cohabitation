@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cohabitation.Views.SettingPage"
+             xmlns:viewmodel="clr-namespace:Cohabitation.ViewModels"
+             x:DataType="viewmodel:SettingViewModel"
+             Title="設定">
+
+
+    <Grid RowDefinitions=".15*, .20*, .50*,.15*">
+        <!--濃い紫部分-->
+        <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle"/>
+
+        <VerticalStackLayout StyleClass="Header">
+            <Label StyleClass="HeaderTitleLarge" Text="設定"/>
+            <Label Text=""/>
+            <Grid ColumnDefinitions=".20*,.60*,.20*" Margin="0,15,0,15" VerticalOptions="End">
+                <Label
+                       Text="&lt;&lt;"
+                       Grid.Column="0"
+                       StyleClass="HeaderTitle"
+                       HorizontalOptions="Center"
+                       FontSize="Large"
+                       BackgroundColor="Transparent">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PreviousMonthCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="{Binding Date}"
+                       Grid.Column="1"
+                       StyleClass="HeaderTitle"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontSize="Large"/>
+                <Label
+                       Text="&gt;&gt;"
+                       Grid.Column="2"
+                       StyleClass="HeaderTitle"
+                       HorizontalOptions="Center"
+                       FontSize="Large"
+                       BackgroundColor="Transparent">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NextMonthCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </VerticalStackLayout>
+
+        <Grid
+        Grid.Row="1"
+        Grid.RowSpan="2"
+        StyleClass="BalanceGrid">
+            <!--四角の部分-->
+            <RoundRectangle StyleClass="BalanceRectangle"/>
+
+            <Grid ColumnDefinitions=".25* ,.25* ,.25*,.25*"
+              RowDefinitions=".18* ,.18* ,.18*,.18*,.18* ,.18*,.12*"
+              StyleClass="Padding25">
+
+                <Label Text="{Binding Lbl_targetAmount}" 
+                       TextColor="{Binding TargetAmountTextColor}"
+                       Grid.Row="0"/>
+                <Entry  
+                       Text="{Binding TargetAmountText}"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="3"
+                       FontSize="Large" 
+                       HeightRequest="50"
+                       Keyboard="Numeric"
+                       HorizontalTextAlignment="End"
+                       MaxLength="12"/>
+
+
+
+
+                <Label Text="{Binding Lbl_currentAmount}"
+                       TextColor="{Binding CurrentAmountTextColor}"
+                       Grid.Row="1"/>
+                <Entry  
+                       Text="{Binding CurrentAmountText}"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="3"
+                       FontSize="Large" 
+                       HeightRequest="50"
+                       Keyboard="Numeric"
+                       HorizontalTextAlignment="End"
+                       MaxLength="12"/>
+
+                <Label Text="名前（1人目）"
+                       TextColor="{Binding PersonNameText1Color}"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="2"/>
+                <Entry
+                       Text="{Binding PersonNameText1}"
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="3"
+                       FontSize="Large" 
+                       HeightRequest="50"
+                       Keyboard="Text"
+                       HorizontalTextAlignment="End"
+                       MaxLength="12"/>
+
+                <Label Text="名前（2人目）"
+                       TextColor="{Binding PersonNameText2Color}"
+                       Grid.Row="3"
+                       Grid.ColumnSpan="2"/>
+                <Entry 
+                       Text="{Binding PersonNameText2}"
+                       Grid.Row="3"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="3"
+                       FontSize="Large" 
+                       HeightRequest="50"
+                       Keyboard="Text"
+                       HorizontalTextAlignment="End"
+                       MaxLength="12" />
+
+                <Label Text="1人目入金比率（%）"
+                       TextColor="{Binding PersonRatioText1Color}"
+                       Grid.Row="4"
+                       Grid.ColumnSpan="2"/>
+                <Entry
+                       Text="{Binding PersonRatioText1}"
+                       Grid.Row="4"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="3"
+                       FontSize="Large" 
+                       HeightRequest="50"
+                       Keyboard="Numeric"
+                       HorizontalTextAlignment="End"
+                       MaxLength="3" />
+
+
+                <Label Text="2人目入金比率（%）"
+                       TextColor="{Binding PersonRatioText2Color}"
+                       Grid.Row="5"
+                       Grid.ColumnSpan="2"/>
+                <Entry
+                       Text="{Binding PersonRatioText2}"
+                       Grid.Row="5"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="3"
+                       FontSize="Large" 
+                       HeightRequest="50"
+                       Keyboard="Numeric"
+                       HorizontalTextAlignment="End"
+                       MaxLength="3" />
+
+                <Label Text="{Binding ErrorMessage}"
+                       TextColor="Red"
+                       Grid.Row="6"
+                       Grid.ColumnSpan="4"
+                       FontSize="Small"/>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <VerticalStackLayout>
+                <Button
+                        Text="保存"
+                        StyleClass="ButtonMarginLRT15"
+                        Command="{Binding UpdateCommand}"/>
+                <!--
+                <Button
+                        Text="戻る"
+                        StyleClass="ButtonMarginLRT15"
+                        BackgroundColor="LightSalmon"
+                    Command="{Binding BackCommand}"/>
+                -->
+            </VerticalStackLayout>
+        </Grid>
+
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Cohabitation.Converters"
+             x:Class="Cohabitation.Views.TransactionsPage"
+             NavigationPage.HasNavigationBar="False"
+             Title="TransactionsPage">
+
+    <ContentPage.Resources>
+        <converters:AmountToCurrencyConverter x:Key="AmountConverter"/>
+        <converters:AmountToColorConverter x:Key="ColorConverter"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions=".15*, .20*,.60*">
+        <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle"/>
+        <VerticalStackLayout StyleClass="Header">
+            <Label StyleClass="HeaderSubTitle" Text="入出金"/>
+        </VerticalStackLayout>
+
+        <Grid
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            StyleClass="BalanceGrid">
+            <RoundRectangle StyleClass="BalanceRectangle"/>
+            <VerticalStackLayout Spacing="10" StyleClass="Padding25">
+                <!--
+ItemName
+Date
+PersonName
+Amount
+Income or Expense
+                -->
+                <Grid RowDefinitions="*,*,*,*,*,10*" RowSpacing="20">
+                    <VerticalStackLayout Grid.Row="0">
+                        <Label Text="項目" Margin="0,0,0,0"/>
+                        <Frame StyleClass="FrameBorder">
+                            <Picker ItemsSource="{Binding Items}"
+                                    SelectedIndex="{Binding SelectedItemIndex}"/>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="1">
+                        <Label Text="入出金額" StyleClass="MarginT15"/>
+                        <Frame StyleClass="FrameBorder">
+                            <Entry Text="{Binding Amount}"
+                           VerticalOptions="Center"
+                           Keyboard="Numeric"/>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="2">
+                        <Label StyleClass="MarginT15" Text="入出金日"/>
+                        <Frame StyleClass="FrameBorder">
+                            <DatePicker Date="{Binding MinimumDate}" 
+                                        MinimumDate="{Binding MinimumDate}"
+                                        MaximumDate="{Binding MaximumDate}"/>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="3">
+
+                        <Grid RowDefinitions="*,*">
+                            <Label Text="名前を選択してください:" StyleClass="MarginT15"/>
+                            <HorizontalStackLayout Grid.Row="1">
+
+                                <Frame StyleClass="FrameBorder">
+                                    <Picker ItemsSource="{Binding Names}"
+                                        SelectedItem="{Binding SelectedName}"
+                                        WidthRequest="200">
+
+                                    </Picker>
+                                </Frame>
+                            </HorizontalStackLayout>
+
+                        </Grid>
+                    </VerticalStackLayout>
+
+                </Grid>
+
+
+                <Label Text="選択されていない項目があります。"
+                       TextColor="Red"
+                       IsVisible="{Binding ShowError}"/>
+
+                <Button StyleClass="MarginT15" Text="Save" x:Name="Save"
+                        Command="{Binding SaveCommand}"/>
+                <Button StyleClass="MarginT15,RedControl" Text="Cancel" x:Name="Cancel"
+                        Command="{Binding CancelCommand}"/>
+
+
+
+
+
+
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>
