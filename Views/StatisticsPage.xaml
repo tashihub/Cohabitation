@@ -1,12 +1,146 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Cohabitation.Converters"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             xmlns:viewmodel="clr-namespace:Cohabitation.ViewModels"
              x:Class="Cohabitation.Views.StatisticsPage"
              Title="分析">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ContentPage.Resources>
+        <converters:AmountToCurrencyConverter x:Key="AmountConverter"/>
+        <converters:AmountToColorConverter x:Key="ColorConverter"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions=".20*,.10*,.25*,.15*,.30*">
+        <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle"/>
+
+        <!--カレンダー部分-->
+        <VerticalStackLayout StyleClass="Header">
+            <Grid RowDefinitions="*,*,*" >
+                <Grid
+                    Grid.Row="0"
+                    ColumnDefinitions=".20*,.60*,.20*"
+                    Margin="15">
+
+                    <Label
+                        Text="&lt;&lt;"
+                        Grid.Column="0"
+                        StyleClass="HeaderTitle"
+                        HorizontalOptions="Center"
+                        FontSize="Large"
+                        BackgroundColor="Transparent">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PreviousMonthCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+
+
+                    <Label 
+                        Text="{Binding Date}"
+                        Grid.Column="1"
+                        StyleClass="HeaderTitle"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontSize="Large"/>
+
+
+                    <Label
+                        Text="&gt;&gt;"
+                        Grid.Column="2"
+                        StyleClass="HeaderTitle"
+                        HorizontalOptions="Center"
+                        FontSize="Large"
+                        BackgroundColor="Transparent">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NextMonthCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+                </Grid>
+                <Label
+                    Grid.Row="1"
+                    StyleClass="HeaderTitle" 
+                    Text="分析"
+                    VerticalOptions="End"/>
+                <Label
+                    Grid.Row="2"
+                    StyleClass="HeaderSubTitle" 
+                    Text="{Binding ItemName}"/>
+            </Grid>
+        </VerticalStackLayout>
+        
+        <Grid 
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            StyleClass="BalanceGrid">
+            <RoundRectangle StyleClass="BalanceRectangle"/>
+            <!--グラフ軸-->
+            <lvc:CartesianChart
+                Series="{Binding SeriesBar}"
+                XAxes="{Binding XAxes}"
+                YAxes="{Binding YAxes}"/>
+        </Grid>
+        <!--食費等の選択できるピッカーを作成する。-->
+        <Grid Grid.Row="3"
+              StyleClass="BalanceGrid">
+            <Picker ItemsSource="{Binding Items}" 
+                    SelectedIndex="{Binding PickerSelectedIndex}" 
+                    SelectedIndexChanged="Picker_SelectedIndexChanged"
+                    FontSize="Large" 
+                    HorizontalTextAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="4"
+              RowDefinitions=".1*,.9*"
+              StyleClass="Margin15">
+            <CollectionView Grid.Row="1"
+                EmptyView="No Data"
+                            ItemsSource="{Binding SpendingList}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="15" Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.EmptyViewTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Label StyleClass="NoDataText" Text="履歴がありません"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.EmptyViewTemplate>
+
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*">
+                            <Label StyleClass="StrongMediumTitle" Text="{Binding Name}"/>
+                            <Label Grid.Row="1" StyleClass="StrongMediumTitle" Text="{Binding Item}"/>
+                            <Label 
+                                Grid.Row="2"
+                                StyleClass="SmallFont"
+                                Text="{Binding Date}"/>
+
+                            <Label x:Name="lblIsIncome"
+                                   IsVisible="False"
+                                   Text="{Binding IsIncome}"/>
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                StyleClass="ListAmount"
+                                Text="{Binding Amount,Converter={StaticResource AmountConverter},ConverterParameter={x:Reference lblIsIncome}}"
+                                TextColor="{Binding Amount,Converter={StaticResource ColorConverter},ConverterParameter={x:Reference lblIsIncome}}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </Grid>
 </ContentPage>

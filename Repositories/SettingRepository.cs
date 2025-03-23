@@ -48,12 +48,12 @@ namespace Cohabitation.Repositories
                 {
                     //もし現在高に途中で変更が加えられていた場合バージョンをあげる
                     //計算結果はバージョンが最新のものだけを取得する
-                    if(saveItem.CurrentAmount != prevItem.CurrentAmount)
+                    if (saveItem != prevItem)
                     {
                         saveItem.Version++;
                     }
                     result =
-                         connection.Update(saveItem);
+                         connection.Insert(saveItem);
                     return StatusMessage =
                          $"{saveItem.Date}の設定を更新しました！";
                 }

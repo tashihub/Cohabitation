@@ -6,6 +6,7 @@
     <Color x:Key="MainColor">#301551</Color>
     <Color x:Key="SecondaryColor">#9742ff</Color>
 
+    
     <Style TargetType="Grid">
         <Setter Property="ColumnSpacing" Value="0" />
         <Setter Property="RowSpacing" Value="0" />

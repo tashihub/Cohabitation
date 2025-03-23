@@ -34,6 +34,9 @@ namespace Cohabitation.Models
         private bool _isIncome;
         
         public string Name { get; set; }
+        /// <summary>
+        /// 1人目のIncomeかExpense　falseのときは2人目
+        /// </summary>
         public bool Person1IncomeExpense { get; set; }
 
         public string SettingJson { get; set; }

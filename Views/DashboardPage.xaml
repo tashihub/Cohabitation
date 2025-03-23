@@ -12,45 +12,63 @@
         <converters:AmountToColorConverter x:Key="ColorConverter"/>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions=".15*, .20*, .20*, .45*">
+    <Grid RowDefinitions=".20*,.10*, .35*, .35*">
         <!--濃い紫部分-->
         <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle"/>
 
         <VerticalStackLayout StyleClass="Header">
-            <Label StyleClass="HeaderTitle" Text="目標金額"/>
-            <Label StyleClass="HeaderSubTitle" Text="{Binding TargetAmount,StringFormat='{0:C}'}"/>
+            <Grid RowDefinitions="*,*,*" >
+                <Grid
+                    Grid.Row="0"
+                    ColumnDefinitions=".20*,.60*,.20*"
+                    Margin="15">
 
-                <Grid ColumnDefinitions=".20*,.60*,.20*" 
-                      Margin="0,15,0,15"
-                       x:DataType="viewmodel:DashboardViewModel">
-                <Label
-                       Text="&lt;&lt;"
-                       Grid.Column="0"
-                       StyleClass="HeaderTitle"
-                       HorizontalOptions="Center"
-                       FontSize="Large"
-                       BackgroundColor="Transparent">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding PreviousMonthCommand}"/>
-                    </Label.GestureRecognizers>
-                </Label>
+                    <Label
+                           Text="&lt;&lt;"
+                           Grid.Column="0"
+                           StyleClass="HeaderTitle"
+                           HorizontalOptions="Center"
+                           FontSize="Large"
+                           BackgroundColor="Transparent">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PreviousMonthCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+
+
                     <Label Text="{Binding Date}"
                        Grid.Column="1"
                        StyleClass="HeaderTitle"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        FontSize="Large"/>
-                <Label
+
+
+                    <Label
                        Text="&gt;&gt;"
                        Grid.Column="2"
                        StyleClass="HeaderTitle"
                        HorizontalOptions="Center"
                        FontSize="Large"
                        BackgroundColor="Transparent">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NextMonthCommand}"/>
-                    </Label.GestureRecognizers>
-                </Label>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NextMonthCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+                </Grid>
+                <Label
+                    Grid.Row="1"
+                    StyleClass="HeaderTitle" 
+                    Text="目標貯金額"
+                    VerticalOptions="End"/>
+                <Label
+                    Grid.Row="2"
+                    StyleClass="HeaderSubTitle" 
+                    Text="{Binding TargetAmount,StringFormat='{0:C}'}"/>
             </Grid>
         </VerticalStackLayout>
 
@@ -65,7 +83,7 @@
                   RowDefinitions=".333* ,.333* ,.333*"
                   StyleClass="Padding25">
                 <VerticalStackLayout>
-                    <Label Text="現在高"/>
+                    <Label Text="2人の口座残高"/>
                     <Label StyleClass="StrongSubTitle" Text="{Binding CurrentAmount ,StringFormat='{0:C}'}"/>
                 </VerticalStackLayout>
 
@@ -84,7 +102,7 @@
                 <VerticalStackLayout Grid.Row="1"
                                      Grid.Column="2">
                     <Label Text=""/>
-                    <Label Text="残り目標入金額"/>
+                    <Label Text="目標入金額"/>
                     <Label StyleClass="StrongSubTitle" Text="{Binding Person1Payment,StringFormat='{0:C}'}"/>
                 </VerticalStackLayout>
 
@@ -105,7 +123,7 @@
                 <VerticalStackLayout Grid.Row="2"
                                      Grid.Column="2">
                     <Label Text=""/>
-                    <Label Text="残り目標入金額"/>
+                    <Label Text="目標入金額"/>
                     <Label StyleClass="StrongSubTitle" Text="{Binding Person2Payment,StringFormat='{0:C}'}"/>
                 </VerticalStackLayout>
             </Grid>

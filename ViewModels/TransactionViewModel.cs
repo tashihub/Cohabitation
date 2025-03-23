@@ -100,6 +100,7 @@ namespace Cohabitation.ViewModels
             if (CheckItem())
             {
 
+
                 var transaction = new Transaction()
                 {
                     Item = Items[SelectedItemIndex],

@@ -7,45 +7,65 @@
              Title="設定">
 
 
-    <Grid RowDefinitions=".15*, .20*, .50*,.15*">
+    <Grid RowDefinitions=".20*, .10*, .55*,.15*">
         <!--濃い紫部分-->
         <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle"/>
 
         <VerticalStackLayout StyleClass="Header">
-            <Label StyleClass="HeaderTitleLarge" Text="設定"/>
-            <Label Text=""/>
-            <Grid ColumnDefinitions=".20*,.60*,.20*" Margin="0,15,0,15" VerticalOptions="End">
-                <Label
-                       Text="&lt;&lt;"
-                       Grid.Column="0"
-                       StyleClass="HeaderTitle"
-                       HorizontalOptions="Center"
-                       FontSize="Large"
-                       BackgroundColor="Transparent">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding PreviousMonthCommand}"/>
-                    </Label.GestureRecognizers>
-                </Label>
-                <Label Text="{Binding Date}"
+            <Grid RowDefinitions="*,*,*" >
+                <Grid
+                    Grid.Row="0"
+                    ColumnDefinitions=".20*,.60*,.20*"
+                    Margin="15">
+
+                    <Label
+                           Text="&lt;&lt;"
+                           Grid.Column="0"
+                           StyleClass="HeaderTitle"
+                           HorizontalOptions="Center"
+                           FontSize="Large"
+                           BackgroundColor="Transparent">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PreviousMonthCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+
+
+                    <Label Text="{Binding Date}"
                        Grid.Column="1"
                        StyleClass="HeaderTitle"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        FontSize="Large"/>
-                <Label
+
+
+                    <Label
                        Text="&gt;&gt;"
                        Grid.Column="2"
                        StyleClass="HeaderTitle"
                        HorizontalOptions="Center"
                        FontSize="Large"
                        BackgroundColor="Transparent">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NextMonthCommand}"/>
-                    </Label.GestureRecognizers>
-                </Label>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NextMonthCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+                </Grid>
+                <Label
+                    Grid.Row="1"
+                    StyleClass="HeaderTitle" 
+                    Text=""
+                    VerticalOptions="End"/>
+                <Label
+                    Grid.Row="2"
+                    StyleClass="HeaderSubTitle" 
+                    Text="設定"/>
             </Grid>
         </VerticalStackLayout>
-
         <Grid
         Grid.Row="1"
         Grid.RowSpan="2"

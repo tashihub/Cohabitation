@@ -64,7 +64,7 @@ namespace Cohabitation.ViewModels
             // 日本円の通貨記号（￥）を取得
             string CurrencySymbol = CultureInfo.GetCultureInfo("ja-JP").NumberFormat.CurrencySymbol;
             Lbl_targetAmount = $"目標金額({CurrencySymbol})";
-            Lbl_currentAmount = $"現在高({CurrencySymbol})";   
+            Lbl_currentAmount = $"残高({CurrencySymbol})";   
         }
         [RelayCommand]
         public void Update()
@@ -84,7 +84,7 @@ namespace Cohabitation.ViewModels
                 PersonName2 = PersonNameText2,
                 PersonRatio1 = int.Parse(PersonRatioText1),
                 PersonRatio2 = int.Parse(PersonRatioText2),
-                Date = _currentDate.ToString("yyyy/MM"),
+                Date = App.CurrentDateTime.ToString("yyyy/MM"),
             };
                 //すでにデータあるのでUpdate
             ErrorMessage = App.SettingRepo.SaveItemByDate(currentSetting,_prevSetting);
@@ -96,15 +96,15 @@ namespace Cohabitation.ViewModels
         public void PreviousMonth()
         {
             //App.SettingRepo.TestDeleteAllItem();
-            _currentDate = _currentDate.AddMonths(-1);
-            Date = _currentDate.ToString("yyyy/MM");
+            App.CurrentDateTime = App.CurrentDateTime.AddMonths(-1);
+            Date = App.CurrentDateTime.ToString("yyyy/MM");
             ShowData();
         }
         [RelayCommand]
         public void NextMonth()
         {
-             _currentDate = _currentDate.AddMonths(1);
-            Date = _currentDate.ToString("yyyy/MM");
+             App.CurrentDateTime = App.CurrentDateTime.AddMonths(1);
+            Date = App.CurrentDateTime.ToString("yyyy/MM");
             ShowData();
         }
         /// <summary>
@@ -114,23 +114,23 @@ namespace Cohabitation.ViewModels
         {   
             SetDefaultColor();
             ErrorMessage = string.Empty;
-            _currentDate = DateTime.Now;
-            Date = _currentDate.ToString("yyyy/MM");
+            Date = App.CurrentDateTime.ToString("yyyy/MM");
             ShowData();
         }
 
         private void ShowData()
         {
             //データがある場合
-            _prevSetting = App.SettingRepo.GetItemByDateTime(_currentDate.ToString("yyyy/MM"));
-            if (_prevSetting != null)
+            var settings = App.SettingRepo.GetItems();
+            var setting = settings.OrderByDescending(x => x.Version).FirstOrDefault();
+            if (setting != null)
             {
-                TargetAmountText = _prevSetting.TargetAmount.ToString();
-                CurrentAmountText = _prevSetting.CurrentAmount.ToString();
-                PersonNameText1 = _prevSetting.PersonName1;
-                PersonNameText2 = _prevSetting.PersonName2;
-                PersonRatioText1 = _prevSetting.PersonRatio1.ToString();
-                PersonRatioText2 = _prevSetting.PersonRatio2.ToString();
+                TargetAmountText = setting.TargetAmount.ToString();
+                CurrentAmountText =setting.CurrentAmount.ToString();
+                PersonNameText1 =  setting.PersonName1;
+                PersonNameText2 =  setting.PersonName2;
+                PersonRatioText1 = setting.PersonRatio1.ToString();
+                PersonRatioText2 = setting.PersonRatio2.ToString();
                 ErrorMessage = string.Empty;
             }
             else
@@ -156,7 +156,7 @@ namespace Cohabitation.ViewModels
             else if(string.IsNullOrEmpty(CurrentAmountText))
             {
                 CurrentAmountTextColor = Colors.Red;
-                return $"現在高を入力してください。";
+                return $"2人の口座残高を入力してください。";
             }
             else if(string.IsNullOrEmpty(PersonNameText1))
             {

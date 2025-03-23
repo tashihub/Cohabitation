@@ -1,6 +1,8 @@
 ﻿using Cohabitation.Models;
 using Cohabitation.Repositories;
+using LiveChartsCore.SkiaSharpView.Maui;
 using Microsoft.Extensions.Logging;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace Cohabitation;
 
@@ -11,7 +13,8 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .UseSkiaSharp() //グラフ作成用
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
@@ -24,7 +27,7 @@ public static class MauiProgram
 #endif
 		builder.Services.AddSingleton<SettingRepository>();
         builder.Services.AddSingleton<TransactionRepository>();
-
+        builder.UseLiveCharts(); // ここが大事！
         return builder.Build();
 	}
 }

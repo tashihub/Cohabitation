@@ -34,6 +34,9 @@ namespace Cohabitation.Models
         public decimal PersonRatio1 { get;set; }
         public decimal PersonRatio2 { get; set; }
 
+        /// <summary>
+        /// 1人目の入金必要額
+        /// </summary>
         public decimal TargetIncome1 
         {
             get => _targetIncome1;
@@ -43,7 +46,9 @@ namespace Cohabitation.Models
             }
         }
         private decimal _targetIncome1 = 0;
-
+        /// <summary>
+        /// 2人目の入金必要額
+        /// </summary>
         public decimal TargetIncome2 
         {
             get => _targetIncome2;
@@ -53,6 +58,8 @@ namespace Cohabitation.Models
             }
         }
         private decimal _targetIncome2 = 0;
+
+
 
         #endregion
 
