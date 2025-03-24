@@ -199,7 +199,7 @@ namespace Cohabitation.ViewModels
         
         private void SetDefaultColor()
         {
-            _defaultLabelColor = new Label().TextColor;
+            _defaultLabelColor = Colors.Black;
             TargetAmountTextColor = _defaultLabelColor;
             CurrentAmountTextColor = _defaultLabelColor;
             PersonNameText1Color = _defaultLabelColor;

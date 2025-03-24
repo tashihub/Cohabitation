@@ -141,7 +141,7 @@
 
     <Style Class="NoDataText" TargetType="Label">
         <Setter Property="HorizontalTextAlignment" Value="Center" />
-        <Setter Property="TextColor" Value="{StaticResource Black}" />
+        <Setter Property="TextColor"/>
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 

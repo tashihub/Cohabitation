@@ -80,15 +80,24 @@
                 <Label Text="{Binding Lbl_targetAmount}" 
                        TextColor="{Binding TargetAmountTextColor}"
                        Grid.Row="0"/>
-                <Entry  
+
+                <Frame StyleClass="FrameBorder" Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       BorderColor="LightGray"
+                       BackgroundColor="White"
+                       Margin="0,5,0,5"
+                       Padding="0">
+                    <Entry  
                        Text="{Binding TargetAmountText}"
-                       Grid.Column="1"
-                       Grid.ColumnSpan="3"
                        FontSize="Large" 
                        HeightRequest="50"
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
-                       MaxLength="12"/>
+                       MaxLength="12"
+                       TextColor="Black"
+                       BackgroundColor="Transparent"/>
+                </Frame>
+
 
 
 
@@ -96,77 +105,114 @@
                 <Label Text="{Binding Lbl_currentAmount}"
                        TextColor="{Binding CurrentAmountTextColor}"
                        Grid.Row="1"/>
-                <Entry  
-                       Text="{Binding CurrentAmountText}"
+                <Frame StyleClass="FrameBorder" 
                        Grid.Row="1"
-                       Grid.Column="1"
-                       Grid.ColumnSpan="3"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="2" 
+                       BorderColor="LightGray"
+                       BackgroundColor="White"
+                       Margin="0,5,0,5"
+                       Padding="0">
+                    <Entry  
+                       Text="{Binding CurrentAmountText}"
+                       TextColor="Black"
                        FontSize="Large" 
                        HeightRequest="50"
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
                        MaxLength="12"/>
+                </Frame >
+
 
                 <Label Text="名前（1人目）"
                        TextColor="{Binding PersonNameText1Color}"
                        Grid.Row="2"
                        Grid.ColumnSpan="2"/>
-                <Entry
+                <Frame StyleClass="FrameBorder" Grid.Row="2"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="2" 
+                       BorderColor="LightGray"
+                       BackgroundColor="White"
+                       Margin="0,5,0,5"
+                       Padding="0">
+                    <Entry
                        Text="{Binding PersonNameText1}"
-                       Grid.Row="2"
-                       Grid.Column="1"
-                       Grid.ColumnSpan="3"
+                       TextColor="Black"
                        FontSize="Large" 
                        HeightRequest="50"
                        Keyboard="Text"
                        HorizontalTextAlignment="End"
-                       MaxLength="12"/>
+                       MaxLength="7"/>
+                </Frame>
+
 
                 <Label Text="名前（2人目）"
                        TextColor="{Binding PersonNameText2Color}"
                        Grid.Row="3"
                        Grid.ColumnSpan="2"/>
-                <Entry 
+
+                <Frame StyleClass="FrameBorder" Grid.Row="3"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       BorderColor="LightGray"
+                       BackgroundColor="White"
+                       Margin="0,5,0,5"
+                       Padding="0">
+                    <Entry 
                        Text="{Binding PersonNameText2}"
-                       Grid.Row="3"
-                       Grid.Column="1"
-                       Grid.ColumnSpan="3"
+                       TextColor="Black"
                        FontSize="Large" 
                        HeightRequest="50"
                        Keyboard="Text"
                        HorizontalTextAlignment="End"
-                       MaxLength="12" />
+                       MaxLength="7" />
+                </Frame>
+
 
                 <Label Text="1人目入金比率（%）"
                        TextColor="{Binding PersonRatioText1Color}"
                        Grid.Row="4"
                        Grid.ColumnSpan="2"/>
-                <Entry
+                <Frame StyleClass="FrameBorder" Grid.Row="4"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       BorderColor="LightGray"
+                       BackgroundColor="White"
+                       Margin="0,5,0,5"
+                       Padding="0">
+                    <Entry
                        Text="{Binding PersonRatioText1}"
-                       Grid.Row="4"
-                       Grid.Column="1"
-                       Grid.ColumnSpan="3"
+                       TextColor="Black"
                        FontSize="Large" 
                        HeightRequest="50"
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
                        MaxLength="3" />
+                </Frame>
+
 
 
                 <Label Text="2人目入金比率（%）"
                        TextColor="{Binding PersonRatioText2Color}"
                        Grid.Row="5"
                        Grid.ColumnSpan="2"/>
-                <Entry
+                <Frame StyleClass="FrameBorder" Grid.Row="5"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       BorderColor="LightGray"
+                       BackgroundColor="White"
+                       Margin="0,5,0,5"
+                       Padding="0">
+                    <Entry
                        Text="{Binding PersonRatioText2}"
-                       Grid.Row="5"
-                       Grid.Column="1"
-                       Grid.ColumnSpan="3"
+                        TextColor="Black"
                        FontSize="Large" 
                        HeightRequest="50"
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
                        MaxLength="3" />
+                </Frame>
+
 
                 <Label Text="{Binding ErrorMessage}"
                        TextColor="Red"

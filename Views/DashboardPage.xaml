@@ -83,26 +83,26 @@
                   RowDefinitions=".333* ,.333* ,.333*"
                   StyleClass="Padding25">
                 <VerticalStackLayout>
-                    <Label Text="2人の口座残高"/>
+                    <Label Text="2人の口座残高" TextColor="Black"/>
                     <Label StyleClass="StrongSubTitle" Text="{Binding CurrentAmount ,StringFormat='{0:C}'}"/>
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Grid.Row="1" >
                     <Label Text="{Binding PersonName1}" FontAttributes="Bold" TextColor="Coral"/>
-                    <Label Text="出費"/>
+                    <Label Text="出費" TextColor="Black"/>
                     <Label StyleClass="StrongSubTitle"  Text="{Binding Person1Expenses,StringFormat='{0:C}'}"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Row="1"
                                      Grid.Column="1">
                     <Label Text=""/>
-                    <Label Text="入金"/>
+                    <Label Text="入金" TextColor="Black"/>
                     <Label StyleClass="StrongSubTitle"  Text="{Binding Person1Income,StringFormat='{0:C}'}"/>
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Grid.Row="1"
                                      Grid.Column="2">
                     <Label Text=""/>
-                    <Label Text="目標入金額"/>
+                    <Label Text="目標入金額" TextColor="Black"/>
                     <Label StyleClass="StrongSubTitle" Text="{Binding Person1Payment,StringFormat='{0:C}'}"/>
                 </VerticalStackLayout>
 
@@ -110,20 +110,20 @@
                 <!--2人目-->
                 <VerticalStackLayout Grid.Row="2" >
                     <Label Text="{Binding PersonName2}" FontAttributes="Bold" TextColor="Coral"/>
-                    <Label Text="出費"/>
+                    <Label Text="出費" TextColor="Black"/>
                     <Label StyleClass="StrongSubTitle"  Text="{Binding Person2Expenses,StringFormat='{0:C}'}"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Row="2"
                                      Grid.Column="1">
                     <Label Text=""/>
-                    <Label Text="入金"/>
+                    <Label Text="入金" TextColor="Black"/>
                     <Label StyleClass="StrongSubTitle" Text="{Binding Person2Income,StringFormat='{0:C}'}"/>
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Grid.Row="2"
                                      Grid.Column="2">
                     <Label Text=""/>
-                    <Label Text="目標入金額"/>
+                    <Label Text="目標入金額" TextColor="Black"/>
                     <Label StyleClass="StrongSubTitle" Text="{Binding Person2Payment,StringFormat='{0:C}'}"/>
                 </VerticalStackLayout>
             </Grid>
@@ -134,6 +134,7 @@
             Grid.Row="2"
             StyleClass="CircularButton"
             Text="+"
+            TextColor="White"
             x:Name="AddTransaction"
             Clicked="AddTransaction_Clicked"
             />
@@ -175,8 +176,8 @@
                                 </SwipeItems>
                             </SwipeView.RightItems> 
                             <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*">
-                                <Label StyleClass="StrongMediumTitle" Text="{Binding Name}"/>
-                                <Label Grid.Row="1" StyleClass="StrongMediumTitle" Text="{Binding Item}"/>
+                                <Label Text="{Binding Name}"/>
+                                <Label Grid.Row="1" Text="{Binding Item}"/>
                                 <Label 
                                 Grid.Row="2"
                                 StyleClass="SmallFont"

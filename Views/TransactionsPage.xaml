@@ -14,7 +14,7 @@
     <Grid RowDefinitions=".10*,.20*,.70*,.10*">
         <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle"/>
         <VerticalStackLayout StyleClass="Header">
-            <Label StyleClass="HeaderSubTitle" Text="入出金"/>
+            <Label StyleClass="HeaderSubTitle" Text="入出金" />
         </VerticalStackLayout>
 
         <Grid
@@ -32,41 +32,56 @@ Income or Expense
                 -->
                 <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*" RowSpacing="15">
                     <VerticalStackLayout Grid.Row="0">
-                        <Label Text="項目" Margin="0,0,0,0"/>
-                        <Frame StyleClass="FrameBorder">
+                        <Label Text="項目" TextColor="Black" Margin="0,0,0,0"/>
+                        <Frame StyleClass="FrameBorder"
+                               BorderColor="LightGray"
+                               
+                               BackgroundColor="Transparent">
                             <Picker ItemsSource="{Binding Items}"
-                                    SelectedIndex="{Binding SelectedItemIndex}"/>
+                                    SelectedIndex="{Binding SelectedItemIndex}"
+                                    TextColor="Black"/>
                         </Frame>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Row="1">
-                        <Label Text="入出金額" StyleClass="MarginT15"/>
-                        <Frame StyleClass="FrameBorder">
+                        <Label Text="入出金額" TextColor="Black" StyleClass="MarginT15"/>
+                        <Frame StyleClass="FrameBorder"
+                               BorderColor="LightGray"
+                               
+                               BackgroundColor="Transparent">
                             <Entry Text="{Binding Amount}"
+                                   TextColor="Black"
                            VerticalOptions="Center"
                            Keyboard="Numeric"/>
                         </Frame>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Row="2">
-                        <Label StyleClass="MarginT15" Text="入出金日"/>
-                        <Frame StyleClass="FrameBorder">
+                        <Label StyleClass="MarginT15" Text="入出金日" TextColor="Black"/>
+                        <Frame StyleClass="FrameBorder"
+                               BorderColor="LightGray"
+                               
+                               BackgroundColor="Transparent">
                             <DatePicker Date="{Binding MinimumDate}" 
                                         MinimumDate="{Binding MinimumDate}"
-                                        MaximumDate="{Binding MaximumDate}"/>
+                                        MaximumDate="{Binding MaximumDate}"
+                                        TextColor="Black"/>
                         </Frame>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Row="3">
 
                         <Grid RowDefinitions="*,*">
-                            <Label Text="名前を選択してください:" StyleClass="MarginT15"/>
+                            <Label Text="名前を選択してください:" StyleClass="MarginT15" TextColor="Black"/>
                             <HorizontalStackLayout Grid.Row="1">
 
-                                <Frame StyleClass="FrameBorder">
+                                <Frame StyleClass="FrameBorder" BackgroundColor="Transparent" 
+                                       BorderColor="LightGray"
+                                       >
                                     <Picker ItemsSource="{Binding Names}"
                                         SelectedItem="{Binding SelectedName}"
-                                        WidthRequest="200">
+                                        WidthRequest="200"
+                                            TextColor="Black">
 
                                     </Picker>
                                 </Frame>
@@ -87,6 +102,8 @@ Income or Expense
                         Grid.Row="5">
                         <Button
                         Text="Save" 
+                        TextColor="White"
+                         FontSize="Medium"
                         x:Name="Save"
                         Command="{Binding SaveCommand}"/>
                     </VerticalStackLayout>
@@ -97,6 +114,8 @@ Income or Expense
                         StyleClass="RedControl" 
                         Text="Cancel"
                         x:Name="Cancel"
+                        TextColor="White"
+                        FontSize="Medium"
                         Command="{Binding CancelCommand}"/>
                     </VerticalStackLayout>
 
